@@ -46,3 +46,5 @@ C:\Projects\Microservices\Services\Catalog\FreeCourse.Services.Catalog\bin\Debug
 C:\Projects\Microservices\Services\Catalog\FreeCourse.Services.Catalog\bin\Debug\net7.0\runtimes\win\native\mongocrypt.dll
 C:\Projects\Microservices\Services\Catalog\FreeCourse.Services.Catalog\bin\Debug\net7.0\AutoMapper.dll
 C:\Projects\Microservices\Services\Catalog\FreeCourse.Services.Catalog\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Projects\Microservices\Services\Catalog\FreeCourse.Services.Catalog\bin\Debug\net7.0\FreeCourse.Shared.dll
+C:\Projects\Microservices\Services\Catalog\FreeCourse.Services.Catalog\bin\Debug\net7.0\FreeCourse.Shared.pdb
