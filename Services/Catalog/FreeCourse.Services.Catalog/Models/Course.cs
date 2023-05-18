@@ -11,6 +11,8 @@ namespace FreeCourse.Services.Catalog.Models
 
         public string Name { get; set; }
 
+        public string Description { get; set; }
+
         [BsonRepresentation(BsonType.Decimal128)]
         public decimal Price { get; set; }
 
@@ -25,5 +27,8 @@ namespace FreeCourse.Services.Catalog.Models
         
         [BsonRepresentation(BsonType.ObjectId)]
         public string CategoryId { get; set; }
+
+        [BsonIgnore]
+        public Category Category { get; set; } //Collection'da gözükmeyecek.
     }
 }
