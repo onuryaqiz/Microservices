@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hasan\\source\\repos\\Microservices\\Services\\Catalog\\FreeCourse.Services.Catalog\\FreeCourse.Services.Catalog.csproj": {}
+    "C:\\Projects\\Microservices\\Services\\Catalog\\FreeCourse.Services.Catalog\\FreeCourse.Services.Catalog.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hasan\\source\\repos\\Microservices\\Services\\Catalog\\FreeCourse.Services.Catalog\\FreeCourse.Services.Catalog.csproj": {
+    "C:\\Projects\\Microservices\\Services\\Catalog\\FreeCourse.Services.Catalog\\FreeCourse.Services.Catalog.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hasan\\source\\repos\\Microservices\\Services\\Catalog\\FreeCourse.Services.Catalog\\FreeCourse.Services.Catalog.csproj",
+        "projectUniqueName": "C:\\Projects\\Microservices\\Services\\Catalog\\FreeCourse.Services.Catalog\\FreeCourse.Services.Catalog.csproj",
         "projectName": "FreeCourse.Services.Catalog",
-        "projectPath": "C:\\Users\\hasan\\source\\repos\\Microservices\\Services\\Catalog\\FreeCourse.Services.Catalog\\FreeCourse.Services.Catalog.csproj",
+        "projectPath": "C:\\Projects\\Microservices\\Services\\Catalog\\FreeCourse.Services.Catalog\\FreeCourse.Services.Catalog.csproj",
         "packagesPath": "C:\\Users\\hasan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hasan\\source\\repos\\Microservices\\Services\\Catalog\\FreeCourse.Services.Catalog\\obj\\",
+        "outputPath": "C:\\Projects\\Microservices\\Services\\Catalog\\FreeCourse.Services.Catalog\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -47,6 +47,10 @@
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.5, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.19.1, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
