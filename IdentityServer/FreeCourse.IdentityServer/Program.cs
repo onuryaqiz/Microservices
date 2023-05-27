@@ -56,11 +56,9 @@ namespace FreeCourse.IdentityServer
 
                     if(!userManager.Users.Any())
                     {
-                        userManager.CreateAsync(new ApplicationUser { UserName = "onuryaqiz", Email = "onur.yaqiz@outlook.com", City = "İstanbul" }, "Asd2023a").Wait(); //Wait senkron olarak çalışmasını sağladı.
+                        userManager.CreateAsync(new ApplicationUser { UserName = "onuryaqiz", Email = "onur.yaqiz@outlook.com", City = "İstanbul" }, "Asd2023a!").Wait(); //Wait senkron olarak çalışmasını sağladı.
                     }
                 }
-
-
 
 
                     Log.Information("Starting host...");
