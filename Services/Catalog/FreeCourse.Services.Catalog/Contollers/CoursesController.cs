@@ -5,16 +5,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FreeCourse.Services.Catalog.Contollers
 {
-    [Route("api/controller")]
+    [Route("api/[controller]")]
     [ApiController]
-    internal class CoursesController : CustomBaseController
+    public class CoursesController : CustomBaseController
     {
         private readonly ICourseService _courseService;
 
-        internal CoursesController(ICourseService courseService)
+        public CoursesController(ICourseService courseService)
         {
             _courseService = courseService;
         }
+
+        [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             var response = await _courseService.GetAllAsync();
@@ -30,6 +32,7 @@ namespace FreeCourse.Services.Catalog.Contollers
             return CreateActionResultInstance(response); //CustomBaseController'dan miras aldık.
         }
 
+        [HttpGet]
         [Route("api/[controller]/GetAllByUserId/{userId}")]
         public async Task<IActionResult> GetAllbyUserIdAsync(string userId)
         {
