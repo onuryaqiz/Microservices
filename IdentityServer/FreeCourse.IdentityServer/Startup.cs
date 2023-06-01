@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Authentication.Certificate;
+using FreeCourse.IdentityServer.Services;
 
 namespace FreeCourse.IdentityServer
 {
@@ -60,6 +61,7 @@ namespace FreeCourse.IdentityServer
                 .AddInMemoryClients(Config.Clients)
                 .AddAspNetIdentity<ApplicationUser>();
 
+            builder.AddResourceOwnerValidator<IdentityResourceOwnerPasswordValidator>();
             // not recommended for production - you need to store your key material somewhere secure
             builder.AddDeveloperSigningCredential();
 
