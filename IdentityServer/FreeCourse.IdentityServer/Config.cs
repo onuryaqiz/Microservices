@@ -55,7 +55,7 @@ namespace FreeCourse.IdentityServer
                     AllowOfflineAccess=true,
                     ClientSecrets={new Secret("secret".Sha256())},
                     AllowedGrantTypes=GrantTypes.ResourceOwnerPassword,//GrantTypes=Akış Tipi,ResourceOwnerPasswordAndClientCredentials'da Refresh token yoktur.
-                    AllowedScopes={ IdentityServerConstants.StandardScopes.Email,IdentityServerConstants.StandardScopes.OpenId,IdentityServerConstants.StandardScopes.Profile,IdentityServerConstants.StandardScopes.OfflineAccess,"roles"},
+                    AllowedScopes={ IdentityServerConstants.StandardScopes.Email,IdentityServerConstants.StandardScopes.OpenId,IdentityServerConstants.StandardScopes.Profile,IdentityServerConstants.StandardScopes.OfflineAccess, IdentityServerConstants.LocalApi.ScopeName,"roles" },
                     //Refresh token elimizde varsa kullanıcı login olmasa bile kullanıcı adına refresh token alabiliriz.O yüzden ismi offlineAccess'dir.
                     AccessTokenLifetime=1*60*60,//1 saat
                     RefreshTokenExpiration=TokenExpiration.Absolute,//61.gün ömrü dolmuş olacak.
