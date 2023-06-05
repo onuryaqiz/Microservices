@@ -34,7 +34,7 @@ namespace FreeCourse.Services.PhotoStock.Controllers
    
         public  IActionResult PhotoDelete(string photoUrl)
         {
-            var path = Path.Combine(Directory.GetCurrentDirectory(), "www.root/Photos", photoUrl); //Combine methodu yanyana verilen işlemleri birleştirir.
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/photos", photoUrl); //Combine methodu yanyana verilen işlemleri birleştirir.
         
             if(!System.IO.File.Exists(path))
             {
