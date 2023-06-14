@@ -14,7 +14,8 @@ namespace FreeCourse.IdentityServer
         public static IEnumerable<ApiResource> ApiResources => new ApiResource[]
         {
             new ApiResource("resource_catalog"){Scopes={"catalog_fullpermission"}},
-            new ApiResource("photo_stock_catalog"){Scopes={"photo_stock_fullpermission"}},
+            new ApiResource("resource_photo_stock"){Scopes={"photo_stock_fullpermission"}},
+            new ApiResource("resource_basket"){Scopes={"basket_fullpermission"}},
             new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
         };
 
@@ -34,6 +35,7 @@ namespace FreeCourse.IdentityServer
             {
                 new ApiScope("catalog_fullpermission","Catalog API için full erişim"),
                 new ApiScope("photo_stock_fullpermission","Photo Stock API için full erişim"),
+                new ApiScope("basket_fullpermission","Basket API için full erişim"),
                 new ApiScope(IdentityServerConstants.LocalApi.ScopeName)
             };
 
@@ -55,7 +57,7 @@ namespace FreeCourse.IdentityServer
                     AllowOfflineAccess=true,
                     ClientSecrets={new Secret("secret".Sha256())},
                     AllowedGrantTypes=GrantTypes.ResourceOwnerPassword,//GrantTypes=Akış Tipi,ResourceOwnerPasswordAndClientCredentials'da Refresh token yoktur.
-                    AllowedScopes={ IdentityServerConstants.StandardScopes.Email,IdentityServerConstants.StandardScopes.OpenId,IdentityServerConstants.StandardScopes.Profile,IdentityServerConstants.StandardScopes.OfflineAccess, IdentityServerConstants.LocalApi.ScopeName,"roles" },//IdentityServerConstants.LocalApi.ScopeName eklenmesi gerekiyor.Yoksa 401 hata kodunu alıyoruz.
+                    AllowedScopes={ "basket_fullpermission",IdentityServerConstants.StandardScopes.Email,IdentityServerConstants.StandardScopes.OpenId,IdentityServerConstants.StandardScopes.Profile,IdentityServerConstants.StandardScopes.OfflineAccess, IdentityServerConstants.LocalApi.ScopeName,"roles" },//IdentityServerConstants.LocalApi.ScopeName eklenmesi gerekiyor.Yoksa 401 hata kodunu alıyoruz.
                     //Refresh token elimizde varsa kullanıcı login olmasa bile kullanıcı adına refresh token alabiliriz.O yüzden ismi offlineAccess'dir.
                     AccessTokenLifetime=1*60*60,//1 saat
                     RefreshTokenExpiration=TokenExpiration.Absolute,//61.gün ömrü dolmuş olacak.

@@ -17,7 +17,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
     options.Authority = builder.Configuration["IdentityServerURL"];
-    options.Audience = "photo_stock_catalog";//config dosyasında ne belirttiysek onu yazdık. Hata düzeltildi.
+    options.Audience = "resource_photo_stock";//config dosyasında ne belirttiysek onu yazdık. Hata düzeltildi.
     options.RequireHttpsMetadata = false;
 
 });
