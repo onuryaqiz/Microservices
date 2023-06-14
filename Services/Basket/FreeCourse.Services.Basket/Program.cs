@@ -18,7 +18,6 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ISharedIdentityService, SharedIdentityService>();
 builder.Services.AddScoped<IBasketService, BasketService>();
 builder.Services.Configure<RedisSettings>(builder.Configuration.GetSection("RedisSettings"));
-var requireAuthorizePolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build(); //Controller tarafında koruma altına aldık. Request header'da mutlaka token olmak zorunda.
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
     options.Authority = builder.Configuration["IdentityServerURL"];
@@ -27,9 +26,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 
 
 });
-builder.Services.AddControllers(opt => {
+
+var requireAuthorizePolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build(); //Controller tarafında koruma altına aldık. Request header'da mutlaka token olmak zorunda.
+
+builder.Services.AddControllers(opt => 
+{
     opt.Filters.Add(new AuthorizeFilter(requireAuthorizePolicy));
-    });
+});
+
 builder.Services.AddSingleton<RedisService>(sp =>
 {
     var redisSettings = sp.GetRequiredService<IOptions<RedisSettings>>().Value;
