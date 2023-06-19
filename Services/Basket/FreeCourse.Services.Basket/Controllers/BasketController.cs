@@ -9,11 +9,11 @@ namespace FreeCourse.Services.Basket.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BasketController : CustomBaseController
+    public class BasketsController : CustomBaseController
     {
         private readonly IBasketService _basketService;
         private readonly ISharedIdentityService _sharedIdentityService;
-        public BasketController(IBasketService basketService, ISharedIdentityService sharedIdentityService)
+        public BasketsController(IBasketService basketService, ISharedIdentityService sharedIdentityService)
         {
             _basketService = basketService;
             _sharedIdentityService = sharedIdentityService;
@@ -22,6 +22,7 @@ namespace FreeCourse.Services.Basket.Controllers
         [HttpGet]
         public async Task<IActionResult> GetBasket()
         {
+            
             return CreateActionResultInstance(await _basketService.GetBasket(_sharedIdentityService.GetUserId));
         }
 
@@ -38,6 +39,7 @@ namespace FreeCourse.Services.Basket.Controllers
 
         }
 
+        [HttpDelete]
         public async Task<IActionResult> DeleteBasket()
         {
             return CreateActionResultInstance(await _basketService.Delete(_sharedIdentityService.GetUserId));

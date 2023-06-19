@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Options;
+using System.IdentityModel.Tokens.Jwt;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,7 +29,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 });
 
 var requireAuthorizePolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build(); //Controller tarafında koruma altına aldık. Request header'da mutlaka token olmak zorunda.
-
+JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("sub");//nameidentifier'a map'leme.Claims'lerde direkt sub'ı gösterecek demektir.
 builder.Services.AddControllers(opt => 
 {
     opt.Filters.Add(new AuthorizeFilter(requireAuthorizePolicy));
