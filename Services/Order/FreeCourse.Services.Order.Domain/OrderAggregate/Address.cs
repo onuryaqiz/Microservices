@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FreeCourse.Services.Order.Domain.OrderAggregate
 {
-    public class Address : ValueObject
+    public class Address : ValueObject //Address bir Owned Type'tir. Id'si olmadığı DB'de bir karşılığı yoktur.
     {
         public string Province { get; private set; }
 
