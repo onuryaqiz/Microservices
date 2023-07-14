@@ -24,7 +24,7 @@ namespace FreeCourse.Services.Order.Domain.OrderAggregate
 
         public IReadOnlyCollection<OrderItem> OrderItems => _orderItems; //private yapılan orderItems'ı sadece Read Only yaparak dış dünyaya açtık. Ve data eklenmesini engelledik.
 
-        public Order(Address address, string buyerId)
+        public Order(string buyerId, Address address)
         {
             _orderItems = new List<OrderItem>();
             CreateDate= DateTime.Now;
