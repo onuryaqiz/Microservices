@@ -6,11 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace FreeCourse.Services.Order.Domain.OrderAggregate
-{ 
+{
     //EF Core Features Not:EF Core yerine HyperNet kullansaydık ona özgü feature'ları kullanacaktık.
     // --Owned Types
     // --Shadow Property
     // --Backing Field
+
     public class Order:Entity,IAggregateRoot
     {
         public DateTime CreateDate { get; private set; }
