@@ -1,0 +1,12 @@
+﻿Migration işlemindeki sorunlar;
+ Sorun: Shadow Property(OrderId) gözükmüyordu. 
+ Çözüm: Order.Domain class library'deki entity'lerde OrderItem Entity class'ından miras alınmamıştı.
+ 
+ Sorun: OrderDb migration başarılı olmasına rağmen DBbeaver'da gözükmiyordu.
+ Çözüm: İlk önce Order.API'de appsettings dosyasındaki configuration'da trusted certificate=true eklendi.
+		Sonra package manager console'da proje olarak Infrastructure seçildi ve add-migration'dan sonra update-database yapıldı.
+
+ Sorun: DBeaver'da OrderDb gözükmesine rağmen Order ve OrderItems tabloları gelmedi.
+ Çözüm: OrderDbContext'teki DbSet'ler kontrol edildi.Ve class ismi ile aynı tablo ismi verildiği için tablolar DB'ye yansımadı. 
+		OrderItem class'ından OrderItems olarak düzeltme yapıldığında yeniden migration işlemi yapıldığında 
+		sorun düzeldi.
