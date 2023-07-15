@@ -1,4 +1,6 @@
 using FreeCourse.Services.Order.Infrastructure;
+using FreeCourse.Shared.Services;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +19,9 @@ builder.Services.AddDbContext<OrderDbContext>(opt =>
 
     });
 });
-
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<ISharedIdentityService,SharedIdentityService>();
+builder.Services.AddMediatR(typeof(Application.Handlers.CreateOrderCommandHandler).Assembly);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
