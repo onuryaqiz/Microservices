@@ -7,12 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{3D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{3D4802B3-917A-4681-BDCD-042CC374D665}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0591D1D5-35B0-44A4-807D-7C56F9FAC2E0}"
-	ProjectSection(SolutionItems) = preProject
-		Ports.txt = Ports.txt
-		Sorunlar_Çözümler.txt = Sorunlar_Çözümler.txt
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{A7A17BB3-975A-4391-A13F-5536B1B2B10F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FreeCourse.Shared", "Shared\FreeCourse.Shared\FreeCourse.Shared.csproj", "{5B3B9BB9-317F-4A4B-AE2B-C494771F63DE}"
@@ -46,6 +40,17 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FreeCourse.Services.Order.Domain.Core", "Services\Order\FreeCourse.Services.Order.Domain.Core\FreeCourse.Services.Order.Domain.Core.csproj", "{D6DA0D64-B314-4EE2-A021-A33E13E5E3A4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FreeCourse.Services.Order.Infrastructure", "Services\Order\FreeCourse.Services.Order.Infrastructure\FreeCourse.Services.Order.Infrastructure.csproj", "{B4011048-4E47-4127-A0D7-E3E987AC2406}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FakePayment", "FakePayment", "{0112645A-87B1-4004-B46F-8CD3FAF00BF2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FreeCourse.Services.FakePayment", "Services\FakePayment\FreeCourse.Services.FakePayment\FreeCourse.Services.FakePayment.csproj", "{B6B29E7D-4809-430E-8AC8-4BDFE1775C5E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{B7A92004-B225-4D0A-AF04-DA49D58DD07E}"
+	ProjectSection(SolutionItems) = preProject
+		SolutionItems\MicroService.PNG = SolutionItems\MicroService.PNG
+		SolutionItems\Ports.txt = SolutionItems\Ports.txt
+		SolutionItems\Sorunlar_Çözümler.txt = SolutionItems\Sorunlar_Çözümler.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,6 +102,10 @@ Global
 		{B4011048-4E47-4127-A0D7-E3E987AC2406}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4011048-4E47-4127-A0D7-E3E987AC2406}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4011048-4E47-4127-A0D7-E3E987AC2406}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6B29E7D-4809-430E-8AC8-4BDFE1775C5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6B29E7D-4809-430E-8AC8-4BDFE1775C5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6B29E7D-4809-430E-8AC8-4BDFE1775C5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6B29E7D-4809-430E-8AC8-4BDFE1775C5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -117,6 +126,8 @@ Global
 		{B3395137-2793-40E4-A87C-9E32220B9D8F} = {A166CF28-D40B-44A2-BAE0-B9CA870F9A80}
 		{D6DA0D64-B314-4EE2-A021-A33E13E5E3A4} = {A166CF28-D40B-44A2-BAE0-B9CA870F9A80}
 		{B4011048-4E47-4127-A0D7-E3E987AC2406} = {A166CF28-D40B-44A2-BAE0-B9CA870F9A80}
+		{0112645A-87B1-4004-B46F-8CD3FAF00BF2} = {3D7DD5FF-55FA-4DA8-A419-BDD04AF7E75D}
+		{B6B29E7D-4809-430E-8AC8-4BDFE1775C5E} = {0112645A-87B1-4004-B46F-8CD3FAF00BF2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FFA9D254-DEAA-472B-81A4-C0C5D3B2E472}
