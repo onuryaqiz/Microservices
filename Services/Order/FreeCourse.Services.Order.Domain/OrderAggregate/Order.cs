@@ -1,6 +1,7 @@
 ﻿using FreeCourse.Services.Order.Domain.Core;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,9 +22,13 @@ namespace FreeCourse.Services.Order.Domain.OrderAggregate
         public string BuyerId { get; private set; }
 
         private readonly List<OrderItem> _orderItems; //field üzerinden gerçekleştiriyoruz.Backing Fields'a bakılabilir.
-
+        
+        
         public IReadOnlyCollection<OrderItem> OrderItems => _orderItems; //private yapılan orderItems'ı sadece Read Only yaparak dış dünyaya açtık. Ve data eklenmesini engelledik.
+        public Order()
+        {
 
+        }
         public Order(string buyerId, Address address)
         {
             _orderItems = new List<OrderItem>();
