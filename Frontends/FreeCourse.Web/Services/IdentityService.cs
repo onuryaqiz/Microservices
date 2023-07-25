@@ -16,7 +16,7 @@ namespace FreeCourse.Web.Services
     public class IdentityService : IIdentityService
     {
         private readonly HttpClient _httpClient;
-        private readonly HttpContextAccessor _httpContextAccessor;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ClientSettings _clientSettings;
         private readonly ServiceApiSettings _serviceApiSettings;
 
