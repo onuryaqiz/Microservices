@@ -21,7 +21,7 @@ namespace FreeCourse.Web.Services
         private readonly ServiceApiSettings _serviceApiSettings;
 
 
-        public IdentityService(HttpClient client, HttpContextAccessor httpContextAccessor, IOptions<ClientSettings> clientSettings, IOptions<ServiceApiSettings> serviceApiSettings)
+        public IdentityService(HttpClient client, IHttpContextAccessor httpContextAccessor, IOptions<ClientSettings> clientSettings, IOptions<ServiceApiSettings> serviceApiSettings)
         {
             _httpClient = client;
             _httpContextAccessor = httpContextAccessor;
@@ -45,10 +45,10 @@ namespace FreeCourse.Web.Services
             var discovery = await _httpClient.GetDiscoveryDocumentAsync(new DiscoveryDocumentRequest
             {
                 Address = _serviceApiSettings.BaseUri,
-                Policy= new DiscoveryPolicy {RequireHttps=false},
+                Policy = new DiscoveryPolicy { RequireHttps = false }
             });
 
-            if(discovery.IsError)
+            if (discovery.IsError)
             {
                 throw discovery.Exception;
             }
@@ -59,16 +59,16 @@ namespace FreeCourse.Web.Services
                 ClientSecret = _clientSettings.WebClientForUser.ClientSecret,
                 UserName = signinInput.Email,
                 Password = signinInput.Password,
-                Address =discovery.TokenEndpoint
+                Address = discovery.TokenEndpoint
             };
 
             var token = await _httpClient.RequestPasswordTokenAsync(passwordTokenRequest);
 
-            if(token.IsError)
+            if (token.IsError)
             {
                 var responseContent = await token.HttpResponse.Content.ReadAsStringAsync();
 
-                var errorDto = JsonSerializer.Deserialize<ErrorDto>(responseContent, new JsonSerializerOptions { PropertyNameCaseInsensitive = true }); //Büyük küçük harfe dikkat etme.
+                var errorDto = JsonSerializer.Deserialize<ErrorDto>(responseContent, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
                 return Response<bool>.Fail(errorDto.Errors, 400);
             }
@@ -81,25 +81,23 @@ namespace FreeCourse.Web.Services
 
             var userInfo = await _httpClient.GetUserInfoAsync(userInfoRequest);
 
-            if(userInfo.IsError)
+            if (userInfo.IsError)
             {
                 throw userInfo.Exception;
             }
 
-            ClaimsIdentity claimsIdentity = new ClaimsIdentity
-            (userInfo.Claims, CookieAuthenticationDefaults.AuthenticationScheme,"name","role"); //Cookie kimliği
+            ClaimsIdentity claimsIdentity = new ClaimsIdentity(userInfo.Claims, CookieAuthenticationDefaults.AuthenticationScheme, "name", "role");//Cookie kimliği
 
-            ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity); //IIdentity'i implemente etmiş bir değer olmalı.
+            ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);//IIdentity'i implemente etmiş bir değer olmalı.
 
             var authenticationProperties = new AuthenticationProperties();
 
             authenticationProperties.StoreTokens(new List<AuthenticationToken>()
-
             {
-                new AuthenticationToken { Name = OpenIdConnectParameterNames.AccessToken , Value = token.AccessToken},
-                new AuthenticationToken { Name = OpenIdConnectParameterNames.RefreshToken , Value = token.RefreshToken},
-                new AuthenticationToken { Name = OpenIdConnectParameterNames.ExpiresIn , Value = DateTime.Now.AddSeconds(token.ExpiresIn).ToString("o",CultureInfo.InvariantCulture)},
+                new AuthenticationToken{ Name=OpenIdConnectParameterNames.AccessToken,Value=token.AccessToken},
+                   new AuthenticationToken{ Name=OpenIdConnectParameterNames.RefreshToken,Value=token.RefreshToken},
 
+                      new AuthenticationToken{ Name=OpenIdConnectParameterNames.ExpiresIn,Value= DateTime.Now.AddSeconds(token.ExpiresIn).ToString("o",CultureInfo.InvariantCulture)}
             });
 
             authenticationProperties.IsPersistent = signinInput.IsRemember;
@@ -110,3 +108,4 @@ namespace FreeCourse.Web.Services
         }
     }
 }
+

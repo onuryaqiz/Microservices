@@ -1,14 +1,15 @@
 ﻿using FreeCourse.Web.Models;
 using FreeCourse.Web.Services;
+using FreeCourse.Web.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FreeCourse.Web.Controllers
 {
-    public class AutController : Controller
+    public class AuthController : Controller
     {
-        private readonly IdentityService _identityService;
+        private readonly IIdentityService _identityService;
 
-        public AutController(IdentityService identityService)
+        public AuthController(IIdentityService identityService)
         {
             _identityService = identityService;
         }
