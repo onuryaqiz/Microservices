@@ -65,7 +65,7 @@ namespace FreeCourse.IdentityServer
                     AllowOfflineAccess=true,
                     ClientSecrets={new Secret("secret".Sha256())},
                     AllowedGrantTypes=GrantTypes.ResourceOwnerPassword,//GrantTypes=Akış Tipi,ResourceOwnerPasswordAndClientCredentials'da Refresh token yoktur.
-                    AllowedScopes={ "basket_fullpermission","discount_fullpermission","order_fullpermission","payment_fullpermission",
+                    AllowedScopes={ "basket_fullpermission","discount_fullpermission","order_fullpermission","payment_fullpermission","gateway_fullpermission",
                     IdentityServerConstants.StandardScopes.Email,IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.Profile,IdentityServerConstants.StandardScopes.OfflineAccess, 
                     IdentityServerConstants.LocalApi.ScopeName,"roles" },//IdentityServerConstants.LocalApi.ScopeName eklenmesi gerekiyor.Yoksa 401 hata kodunu alıyoruz.

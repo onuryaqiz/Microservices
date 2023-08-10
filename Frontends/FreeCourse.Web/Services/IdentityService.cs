@@ -4,12 +4,17 @@ using FreeCourse.Web.Services.Interfaces;
 using IdentityModel.Client;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using System;
+using System.Collections.Generic;
 using System.Globalization;
-using System.Reflection.Metadata.Ecma335;
+using System.Linq;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace FreeCourse.Web.Services
 {
@@ -20,7 +25,6 @@ namespace FreeCourse.Web.Services
         private readonly ClientSettings _clientSettings;
         private readonly ServiceApiSettings _serviceApiSettings;
 
-
         public IdentityService(HttpClient client, IHttpContextAccessor httpContextAccessor, IOptions<ClientSettings> clientSettings, IOptions<ServiceApiSettings> serviceApiSettings)
         {
             _httpClient = client;
@@ -28,7 +32,6 @@ namespace FreeCourse.Web.Services
             _clientSettings = clientSettings.Value;
             _serviceApiSettings = serviceApiSettings.Value;
         }
-
 
         public Task<TokenResponse> GetAccessTokenByRefreshToken()
         {
@@ -42,15 +45,15 @@ namespace FreeCourse.Web.Services
 
         public async Task<Response<bool>> SignIn(SigninInput signinInput)
         {
-            var discovery = await _httpClient.GetDiscoveryDocumentAsync(new DiscoveryDocumentRequest
+            var disco = await _httpClient.GetDiscoveryDocumentAsync(new DiscoveryDocumentRequest
             {
                 Address = _serviceApiSettings.BaseUri,
                 Policy = new DiscoveryPolicy { RequireHttps = false }
             });
 
-            if (discovery.IsError)
+            if (disco.IsError)
             {
-                throw discovery.Exception;
+                throw disco.Exception;
             }
 
             var passwordTokenRequest = new PasswordTokenRequest
@@ -59,7 +62,7 @@ namespace FreeCourse.Web.Services
                 ClientSecret = _clientSettings.WebClientForUser.ClientSecret,
                 UserName = signinInput.Email,
                 Password = signinInput.Password,
-                Address = discovery.TokenEndpoint
+                Address = disco.TokenEndpoint
             };
 
             var token = await _httpClient.RequestPasswordTokenAsync(passwordTokenRequest);
@@ -76,7 +79,7 @@ namespace FreeCourse.Web.Services
             var userInfoRequest = new UserInfoRequest
             {
                 Token = token.AccessToken,
-                Address = discovery.UserInfoEndpoint
+                Address = disco.UserInfoEndpoint
             };
 
             var userInfo = await _httpClient.GetUserInfoAsync(userInfoRequest);
@@ -86,7 +89,7 @@ namespace FreeCourse.Web.Services
                 throw userInfo.Exception;
             }
 
-            ClaimsIdentity claimsIdentity = new ClaimsIdentity(userInfo.Claims, CookieAuthenticationDefaults.AuthenticationScheme, "name", "role");//Cookie kimliği
+            ClaimsIdentity claimsIdentity = new ClaimsIdentity(userInfo.Claims, CookieAuthenticationDefaults.AuthenticationScheme, "name", "role");
 
             ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);//IIdentity'i implemente etmiş bir değer olmalı.
 
@@ -108,4 +111,3 @@ namespace FreeCourse.Web.Services
         }
     }
 }
-
